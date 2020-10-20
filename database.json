@@ -1,0 +1,49 @@
+{
+  "activities": [
+    {
+      "id": 1,
+      "fullname": "Criar novo componente",
+      "description": "Criar um novo componente para mostrar a atividade atual",
+      "projectName": "App de controle de atividade",
+      "totalTime": 120,
+      "usedTime": 50,
+      "deadLineDate": "20201031",
+      "priority": 1,
+      "status": "andamento"
+    },
+    {
+      "id": 2,
+      "fullname": "Tela de cadastro de projetos",
+      "description": "Criar a tela para cadastrar componentes",
+      "projectName": "App de controle de atividade",
+      "totalTime": 120,
+      "usedTime": 0,
+      "deadLineDate": "20201103",
+      "priority": 1,
+      "status": "ativo"
+    },
+    {
+      "id": 3,
+      "fullname": "Listagens de atividade pendentes",
+      "description": "Criar lista de atividades pendentes",
+      "projectName": "App de controle de atividade",
+      "totalTime": 120,
+      "usedTime": 0,
+      "deadLineDate": "20201103",
+      "priority": 1,
+      "status": "ativo"
+    },
+    {
+      "id": 4,
+      "fullname": "Fazer Deploy da versão",
+      "description": "Enviar versão para o firebase",
+      "projectName": "App de controle de atividade",
+      "totalTime": 120,
+      "usedTime": 0,
+      "deadLineDate": "20201105",
+      "priority": 1,
+      "status": "ativo"
+    }
+  ],
+  "current-activity": {}
+}
