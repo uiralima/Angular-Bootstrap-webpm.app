@@ -1,3 +1,17 @@
 .col button {
     min-width: 100%;
 }
+
+.progress {
+    margin-bottom: 10px;
+    color: black;
+}
+
+.progress-bar {
+    color: white;
+}
+
+.min {
+    color: gray;
+    font-size: 0.7rem;
+}

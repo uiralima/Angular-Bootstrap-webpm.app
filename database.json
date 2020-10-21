@@ -6,52 +6,52 @@
       "description": "Criar um novo componente para mostrar a atividade atual",
       "projectName": "App de controle de atividade",
       "totalTime": 120,
-      "usedTime": 24,
+      "usedTime": 33,
       "deadLineDate": "20201031",
       "priority": 1,
       "status": "ativo",
       "events": [
         {
-          "startTime": "20201020215337",
-          "stopTime": "20201020215350",
+          "startTime": "20201021085327",
+          "stopTime": "20201021085338",
           "note": "",
-          "totalSeconds": 13
+          "totalSeconds": 11
         },
         {
-          "startTime": "20201020215602",
-          "stopTime": "20201020215728",
+          "startTime": "20201021085340",
+          "stopTime": "20201021085856",
           "note": "",
-          "totalSeconds": 86
+          "totalSeconds": 316
         },
         {
-          "startTime": "20201020215744",
-          "stopTime": "20201020215809",
+          "startTime": "20201021090508",
+          "stopTime": "20201021092334",
           "note": "",
-          "totalSeconds": 25
+          "totalSeconds": 1106
         },
         {
-          "startTime": "20201020220121",
-          "stopTime": "20201020222254",
-          "note": "",
-          "totalSeconds": 1293
-        },
-        {
-          "startTime": "20201021075627",
-          "stopTime": "20201021075632",
-          "note": "",
-          "totalSeconds": 5
-        },
-        {
-          "startTime": "20201021075753",
-          "stopTime": "20201021075820",
-          "note": "",
-          "totalSeconds": 27
-        },
-        {
-          "startTime": "20201021081210",
-          "stopTime": "20201021081212",
+          "startTime": "20201021092336",
+          "stopTime": "20201021092338",
           "note": "",
           "totalSeconds": 2
+        },
+        {
+          "startTime": "20201021093406",
+          "stopTime": "20201021093409",
+          "note": "",
+          "totalSeconds": 3
+        },
+        {
+          "startTime": "20201021093655",
+          "stopTime": "20201021093834",
+          "note": "",
+          "totalSeconds": 99
+        },
+        {
+          "startTime": "20201021093844",
+          "stopTime": "20201021094653",
+          "note": "",
+          "totalSeconds": 489
         }
       ]
     },
@@ -64,18 +64,82 @@
       "usedTime": 0,
       "deadLineDate": "20201103",
       "priority": 1,
-      "status": "ativo"
+      "status": "ativo",
+      "events": [
+        {
+          "startTime": "20201021092339",
+          "stopTime": "20201021092417",
+          "note": "",
+          "totalSeconds": 38
+        },
+        {
+          "startTime": "20201021093410",
+          "stopTime": "20201021093417",
+          "note": "",
+          "totalSeconds": 7
+        }
+      ]
     },
     {
       "id": 3,
       "fullname": "Listagens de atividade pendentes",
       "description": "Criar lista de atividades pendentes",
       "projectName": "App de controle de atividade",
-      "totalTime": 120,
-      "usedTime": 0,
+      "totalTime": 10,
+      "usedTime": 18,
       "deadLineDate": "20201103",
       "priority": 1,
-      "status": "ativo"
+      "status": "ativo",
+      "events": [
+        {
+          "startTime": "20201021092420",
+          "stopTime": "20201021092422",
+          "note": "",
+          "totalSeconds": 2
+        },
+        {
+          "startTime": "20201021092451",
+          "stopTime": "20201021093030",
+          "note": "",
+          "totalSeconds": 339
+        },
+        {
+          "startTime": "20201021093042",
+          "stopTime": "20201021093049",
+          "note": "",
+          "totalSeconds": 7
+        },
+        {
+          "startTime": "20201021093053",
+          "stopTime": "20201021093220",
+          "note": "",
+          "totalSeconds": 87
+        },
+        {
+          "startTime": "20201021093235",
+          "stopTime": "20201021093405",
+          "note": "",
+          "totalSeconds": 90
+        },
+        {
+          "startTime": "20201021093421",
+          "stopTime": "20201021093654",
+          "note": "",
+          "totalSeconds": 153
+        },
+        {
+          "startTime": "20201021093836",
+          "stopTime": "20201021093843",
+          "note": "",
+          "totalSeconds": 7
+        },
+        {
+          "startTime": "20201021094655",
+          "stopTime": "20201021095420",
+          "note": "",
+          "totalSeconds": 445
+        }
+      ]
     },
     {
       "id": 4,
@@ -86,7 +150,15 @@
       "usedTime": 0,
       "deadLineDate": "20201105",
       "priority": 1,
-      "status": "ativo"
+      "status": "ativo",
+      "events": [
+        {
+          "startTime": "20201021092424",
+          "stopTime": "20201021092426",
+          "note": "",
+          "totalSeconds": 2
+        }
+      ]
     }
   ],
   "current-activity": {}

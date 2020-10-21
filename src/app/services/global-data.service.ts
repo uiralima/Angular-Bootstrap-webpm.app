@@ -11,7 +11,16 @@ export class GlobalDataService {
             return "http://192.168.0.102:3000/";
         }
         else {
-            return "";
+            throw new Error('Method not implemented.');
+        }
+    }
+
+    get serverNow(): Date {
+        if (this.appContext.isTest) {
+            return new Date();
+        }
+        else {
+            throw new Error('Method not implemented.');
         }
     }
 }

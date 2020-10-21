@@ -19,13 +19,16 @@ export class UtilsService {
     }
 
     public dateFromMyString(value: string): Date {
+        while (value.length < 14) {
+            value += "0";
+        }
         let year = +value.substr(0,4);
         let month = +value.substr(4,2);
         let day = +value.substr(6,2);
         let hour = +value.substr(8,2);
         let minute = +value.substr(10,2);
         let second = +value.substr(12,2);
-        return new Date(year, month, day, hour, minute, second);
+        return new Date(year, month-1, day, hour, minute, second);
     }
 
 }

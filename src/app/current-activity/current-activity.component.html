@@ -20,13 +20,38 @@
         <div class="card-body" *ngIf="currentActivity else activityEmpty">
             <h5 class="card-title" [innerHTML]="currentActivity.fullname"></h5>
             <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="currentActivity.projectName"></h6>
-            <p class="card-text" [innerHTML]="currentActivity.description"></p>
+            <h6 *ngIf="remainTime >= 0 else lateActivity" class="card-text positive">Restam: {{remainTime}}<span
+                    class="min">min</span>/{{currentActivity.totalTime}}<span class="min">min</span></h6>
+            <ng-template #lateActivity>
+                <h6 class="card-text danger">Atrasado em: {{-remainTime}}<span class="min">min</span></h6>
+            </ng-template>
+            <div class="progress">
+                <div *ngIf="percentageTime <= 25"
+                    class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                    [innerHTML]="getpercentageLabel(25)" role="progressbar"
+                    [style]="'width:' + getPercentare(25, 0) + '%'" aria-valuenow="15" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                <div *ngIf="percentageTime > 25 && percentageTime <= 50"
+                    class="progress-bar progress-bar-striped progress-bar-animated" [innerHTML]="getpercentageLabel(50)"
+                    role="progressbar" [style]="'width:' + getPercentare(50, 0) + '%'" aria-valuenow="30"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                <div *ngIf="percentageTime > 50 && percentageTime <= 75"
+                    class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                    [innerHTML]="getpercentageLabel(75)" role="progressbar"
+                    [style]="'width:' + getPercentare(75, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                <div *ngIf="percentageTime > 75"
+                    class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
+                    [innerHTML]="getpercentageLabel(100)" role="progressbar"
+                    [style]="'width:' + getPercentare(100, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
             <div class="row">
                 <div class="col">
                     <button (click)="stopActivity()" type="button" class="btn btn-danger">Parar</button>
                 </div>
                 <div class="col">
-                    <button (click)="stopActivity()" type="button" class="btn btn-success">Terminei !</button>
+                    <button (click)="stopActivity()" type="button" class="btn btn-success">Terminei</button>
                 </div>
             </div>
         </div>
