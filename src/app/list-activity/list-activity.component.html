@@ -1,15 +1,18 @@
 <div class="container">
     <div class="card">
         <h5 class="card-header">Fila</h5>
-        <div class="card-body">
+        <div class="card-body" *ngIf="activities.length > 0 else emptyQueue">
             <div class="card" *ngFor="let activity of activities">
                 <div class="card-body">
                     <h5 class="card-title" [innerHTML]="activity.fullname"></h5>
                     <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="activity.projectName"></h6>
                     <p class="card-text" [innerHTML]="activity.description"></p>
-                    <button (click)="startActivity(activity)" type="button" class="btn btn-primary">Iniciar</button>
+                    <button [disabled]="!canStart" (click)="startActivity(activity)" type="button" class="btn btn-primary">Iniciar</button>
                 </div>
             </div>
         </div>
+        <ng-template #emptyQueue>
+            <p>Tudo resolvido</p>
+        </ng-template>
     </div>
 </div>

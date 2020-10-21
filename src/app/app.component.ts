@@ -9,7 +9,7 @@ import { AppContext } from './shared/context';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'webpmApp';
+  title = 'WebPM App';
 
   public currentActivity: Activity = null;
 
@@ -61,5 +61,4 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     );
   }
-
 }

@@ -10,6 +10,8 @@ export class ListActivityComponent implements OnInit {
 
   @Input() public activities: Activity[] = [];
 
+  @Input() public canStart: boolean;
+
   @Output("startActivity") public startActivityEvent: EventEmitter<Activity> = new EventEmitter();
 
   constructor() { }
@@ -18,7 +20,9 @@ export class ListActivityComponent implements OnInit {
   }
 
   public startActivity(activity: Activity) {
-    this.startActivityEvent.emit(activity);
+    if (this.canStart) {
+      this.startActivityEvent.emit(activity);
+    }
   }
 
 }

@@ -8,6 +8,7 @@ import { GlobalDataService } from './services/global-data.service';
 import { ActivityService } from './services/activity.service';
 import { AppContext, ContextFactoty } from './shared/context';
 import { ListActivityComponent } from './list-activity/list-activity.component';
+import { UtilsService } from './services/utils.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ListActivityComponent } from './list-activity/list-activity.component';
   providers: [
     GlobalDataService,
     ActivityService,
+    UtilsService,
     { provide: AppContext, useValue: ContextFactoty.CreateContext(isDevMode()) }
   ],
   bootstrap: [AppComponent]

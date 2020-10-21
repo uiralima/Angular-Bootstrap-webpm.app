@@ -8,7 +8,7 @@ export class GlobalDataService {
 
     get serviceUrl(): string {
         if (this.appContext.isTest) {
-            return "http://localhost:3000/";
+            return "http://192.168.0.102:3000/";
         }
         else {
             return "";

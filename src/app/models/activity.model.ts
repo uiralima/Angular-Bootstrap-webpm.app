@@ -1,3 +1,5 @@
+import { Event } from './event.modal';
+
 export class Activity {
     constructor(
         public id: number,
@@ -7,7 +9,8 @@ export class Activity {
         public totalTime: number,
         public usedTime: number,
         public deadLineDate: string,
-        public status: string
+        public status: string,
+        public events: Event[]= []
     ) {}
     
 }
