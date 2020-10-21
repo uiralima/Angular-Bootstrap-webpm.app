@@ -9,6 +9,7 @@ import { ActivityService } from './services/activity.service';
 import { AppContext, ContextFactoty } from './shared/context';
 import { ListActivityComponent } from './list-activity/list-activity.component';
 import { UtilsService } from './services/utils.service';
+import { JsonServerActivityService } from './services/implementations/activity.json-server.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { UtilsService } from './services/utils.service';
   ],
   providers: [
     GlobalDataService,
-    ActivityService,
+    { provide: 'ActivityService', useClass: JsonServerActivityService},
     UtilsService,
     { provide: AppContext, useValue: ContextFactoty.CreateContext(isDevMode()) }
   ],

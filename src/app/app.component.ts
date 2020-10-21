@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Activity } from './models/activity.model';
 import { ActivityService } from './services/activity.service';
 import { AppContext } from './shared/context';
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public activities: Activity[] = [];
 
   constructor(
-    public activityService: ActivityService) { }
+    @Inject('ActivityService') public activityService: ActivityService) { }
 
   ngOnDestroy(): void {
   }

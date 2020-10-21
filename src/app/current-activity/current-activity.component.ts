@@ -28,7 +28,6 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if ((changes.currentActivity.currentValue) && (!changes.currentActivity.previousValue)) {
       let iconObserver = interval(333);
       this.iconUnsubscribe = iconObserver.subscribe((value: number) => {
