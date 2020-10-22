@@ -1,27 +1,30 @@
+
 # WebpmApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+Projeto para controlar atividades a serem feitas e gerenciamento de projetos e de time de trabalho, foi feito afim de demonstração de utilização do Angular 9. 
 
-## Development server
+## Simulação de Backend
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para simular o backend estou usando inicialmente o json-server com o arquivo database.json para iniciá-lo basta rodar o comando: 
 
-## Code scaffolding
+    json-server --watching database.json
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## TODO List:
 
-## Build
+ 1. Criar componente de trabalho principal e tirar o funcionamento do app.component.
+ 2. Criar formulário de cadastro de projetos.
+ 3. Criar formulário de cadastro de atividades.
+ 4. Permitir adicionar anotações na atividade.
+ 5. Possibilitar finalizar a atividade.
+ 6. Possibilitar anexa link de arquivos à atividade.
+ 7. Implementar uma interface de dados para persistir  no Firebase.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Iniciar servidor
+Para rodar a aplicação basta rodar o comando:
 
-## Running unit tests
+    ng serve
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Deploy
+Para fazer o deploy rode o comando:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    ng build --prod
