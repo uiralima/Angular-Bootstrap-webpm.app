@@ -1,63 +1,165 @@
 <div class="container">
     <div class="card">
         <h5 class="card-header">
-            <svg *ngIf="iconStep === 1" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hourglass-top"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z" />
-            </svg>
-            <svg *ngIf="iconStep === 2" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hourglass-split"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13s-.866-1.299-3-1.48V8.35z" />
-            </svg>
-            <svg *ngIf="iconStep === 3" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hourglass-bottom"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702s.18.149.5.149.5-.15.5-.15v-.7c0-.701.478-1.236 1.011-1.492A3.5 3.5 0 0 0 11.5 3V2h-7z" />
-            </svg>
-            Atividade Atual</h5>
-        <div class="card-body" *ngIf="currentActivity else activityEmpty">
-            <h5 class="card-title" [innerHTML]="currentActivity.fullname"></h5>
-            <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="currentActivity.projectName"></h6>
-            <h6 *ngIf="remainTime >= 0 else lateActivity" class="card-text positive">Restam: {{remainTime}}<span
-                    class="min">min</span>/{{currentActivity.totalTime}}<span class="min">min</span></h6>
-            <ng-template #lateActivity>
-                <h6 class="card-text danger">Atrasado em: {{-remainTime}}<span class="min">min</span></h6>
-            </ng-template>
-            <div class="progress">
-                <div *ngIf="percentageTime <= 25"
-                    class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                    [innerHTML]="getpercentageLabel(25)" role="progressbar"
-                    [style]="'width:' + getPercentare(25, 0) + '%'" aria-valuenow="15" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                <div *ngIf="percentageTime > 25 && percentageTime <= 50"
-                    class="progress-bar progress-bar-striped progress-bar-animated" [innerHTML]="getpercentageLabel(50)"
-                    role="progressbar" [style]="'width:' + getPercentare(50, 0) + '%'" aria-valuenow="30"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                <div *ngIf="percentageTime > 50 && percentageTime <= 75"
-                    class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
-                    [innerHTML]="getpercentageLabel(75)" role="progressbar"
-                    [style]="'width:' + getPercentare(75, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                <div *ngIf="percentageTime > 75"
-                    class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
-                    [innerHTML]="getpercentageLabel(100)" role="progressbar"
-                    [style]="'width:' + getPercentare(100, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-            </div>
             <div class="row">
                 <div class="col">
-                    <button (click)="stopActivity()" type="button" class="btn btn-danger">Parar</button>
+                    <svg *ngIf="iconStep === 1" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hourglass-top"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z" />
+                    </svg>
+                    <svg *ngIf="iconStep === 2" width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-hourglass-split" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13s-.866-1.299-3-1.48V8.35z" />
+                    </svg>
+                    <svg *ngIf="iconStep === 3" width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-hourglass-bottom" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702s.18.149.5.149.5-.15.5-.15v-.7c0-.701.478-1.236 1.011-1.492A3.5 3.5 0 0 0 11.5 3V2h-7z" />
+                    </svg>
+                    Atividade Atual
                 </div>
-                <div class="col">
-                    <button (click)="stopActivity()" type="button" class="btn btn-success">Terminei</button>
+                <div class="col-auto">
+                    <svg *ngIf="detailShow" (click)="detailShow = false" width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-dash-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                    </svg>
+                    <svg *ngIf="!detailShow" (click)="detailShow = true" width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-plus-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path fill-rule="evenodd"
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg>
                 </div>
             </div>
+        </h5>
+        <div *ngIf="detailShow else resume">
+            <div class="card-body" *ngIf="currentActivity else activityEmpty">
+                <h5 class="card-title" [innerHTML]="currentActivity.fullname"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="currentActivity.projectName"></h6>
+                <h6 *ngIf="remainTime >= 0 else lateActivity" class="card-text positive">Restam: {{remainTime}}<span
+                        class="min">min</span>/{{currentActivity.totalTime}}<span class="min">min</span></h6>
+                <ng-template #lateActivity>
+                    <h6 class="card-text danger">Atrasado em: {{-remainTime}}<span class="min">min</span></h6>
+                </ng-template>
+                <div class="progress">
+                    <div *ngIf="percentageTime <= 25"
+                        class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                        [innerHTML]="getpercentageLabel(25)" role="progressbar"
+                        [style]="'width:' + getPercentare(25, 0) + '%'" aria-valuenow="15" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div *ngIf="percentageTime > 25 && percentageTime <= 50"
+                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        [innerHTML]="getpercentageLabel(50)" role="progressbar"
+                        [style]="'width:' + getPercentare(50, 0) + '%'" aria-valuenow="30" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div *ngIf="percentageTime > 50 && percentageTime <= 75"
+                        class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                        [innerHTML]="getpercentageLabel(75)" role="progressbar"
+                        [style]="'width:' + getPercentare(75, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div *ngIf="percentageTime > 75"
+                        class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
+                        [innerHTML]="getpercentageLabel(100)" role="progressbar"
+                        [style]="'width:' + getPercentare(100, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button (click)="stopActivity()" type="button" class="btn btn-danger">Parar</button>
+                    </div>
+                    <div class="col">
+                        <button (click)="stopActivity()" type="button" class="btn btn-success">Terminei</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-outline-info" type="button" data-toggle="collapse"
+                            data-target="#collapseMoreInfo" aria-expanded="false">
+                            Main Informação
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle-fill"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseMoreInfo">
+                    <div class="card card-body" [innerHTML]="currentActivity.description"></div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-info" type="button" data-toggle="collapse"
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Editar
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-info" type="button" data-toggle="collapse"
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Anexar
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-info" type="button" data-toggle="collapse"
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Anotação
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #activityEmpty>
+                <div class="card-body">
+                    <h5 class="card-title">Nenhuma</h5>
+                </div>
+            </ng-template>
         </div>
-        <ng-template #activityEmpty>
-            <div class="card-body">
-                <h5 class="card-title">Nenhuma</h5>
+        <ng-template #resume>
+            <div *ngIf="currentActivity">
+                <div class="progress small-progress">
+                    <div *ngIf="percentageTime <= 25"
+                        class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar"
+                        [style]="'width:' + getPercentare(25, 0) + '%'" aria-valuenow="15" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div *ngIf="percentageTime > 25 && percentageTime <= 50"
+                        class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        [style]="'width:' + getPercentare(50, 0) + '%'" aria-valuenow="30" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div *ngIf="percentageTime > 50 && percentageTime <= 75"
+                        class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar"
+                        [style]="'width:' + getPercentare(75, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div *ngIf="percentageTime > 75"
+                        class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar"
+                        [style]="'width:' + getPercentare(100, 0) + '%'" aria-valuenow="20" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+                <div class="resume-title" [innerHTML]="currentActivity.fullname"></div>
             </div>
         </ng-template>
     </div>

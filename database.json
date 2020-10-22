@@ -6,7 +6,7 @@
       "description": "Criar um novo componente para mostrar a atividade atual",
       "projectName": "App de controle de atividade",
       "totalTime": 120,
-      "usedTime": 33,
+      "usedTime": 73,
       "deadLineDate": "20201031",
       "priority": 1,
       "status": "ativo",
@@ -52,6 +52,132 @@
           "stopTime": "20201021094653",
           "note": "",
           "totalSeconds": 489
+        },
+        {
+          "startTime": "20201021191522",
+          "stopTime": "20201021191537",
+          "note": "",
+          "totalSeconds": 15
+        },
+        {
+          "startTime": "20201021191546",
+          "stopTime": "20201021191553",
+          "note": "",
+          "totalSeconds": 7
+        },
+        {
+          "startTime": "20201021191913",
+          "stopTime": "20201021191925",
+          "note": "",
+          "totalSeconds": 12
+        },
+        {
+          "startTime": "20201021191926",
+          "stopTime": "20201021192557",
+          "note": "",
+          "totalSeconds": 391
+        },
+        {
+          "startTime": "20201021192558",
+          "stopTime": "20201021192847",
+          "note": "",
+          "totalSeconds": 169
+        },
+        {
+          "startTime": "20201021193819",
+          "stopTime": "20201021193835",
+          "note": "",
+          "totalSeconds": 16
+        },
+        {
+          "startTime": "20201021194510",
+          "stopTime": "20201021200404",
+          "note": "",
+          "totalSeconds": 1134
+        },
+        {
+          "startTime": "20201021200412",
+          "stopTime": "20201021200508",
+          "note": "",
+          "totalSeconds": 56
+        },
+        {
+          "startTime": "20201021200509",
+          "stopTime": "20201021200512",
+          "note": "",
+          "totalSeconds": 3
+        },
+        {
+          "startTime": "20201021200513",
+          "stopTime": "20201021200516",
+          "note": "",
+          "totalSeconds": 3
+        },
+        {
+          "startTime": "20201021204352",
+          "stopTime": "20201021204401",
+          "note": "",
+          "totalSeconds": 9
+        },
+        {
+          "startTime": "20201021204427",
+          "stopTime": "20201021204442",
+          "note": "",
+          "totalSeconds": 15
+        },
+        {
+          "startTime": "20201021204616",
+          "stopTime": "20201021204625",
+          "note": "",
+          "totalSeconds": 9
+        },
+        {
+          "startTime": "20201021205008",
+          "stopTime": "20201021205019",
+          "note": "",
+          "totalSeconds": 11
+        },
+        {
+          "startTime": "20201021211936",
+          "stopTime": "20201021212004",
+          "note": "",
+          "totalSeconds": 28
+        },
+        {
+          "startTime": "20201021212201",
+          "stopTime": "20201021212903",
+          "note": "",
+          "totalSeconds": 422
+        },
+        {
+          "startTime": "20201021213147",
+          "stopTime": "20201021213245",
+          "note": "",
+          "totalSeconds": 58
+        },
+        {
+          "startTime": "20201021213423",
+          "stopTime": "20201021213431",
+          "note": "",
+          "totalSeconds": 8
+        },
+        {
+          "startTime": "20201021213538",
+          "stopTime": "20201021213544",
+          "note": "",
+          "totalSeconds": 6
+        },
+        {
+          "startTime": "20201021213751",
+          "stopTime": "20201021213759",
+          "note": "",
+          "totalSeconds": 8
+        },
+        {
+          "startTime": "20201021213846",
+          "stopTime": "20201021213853",
+          "note": "",
+          "totalSeconds": 7
         }
       ]
     },
@@ -61,7 +187,7 @@
       "description": "Criar a tela para cadastrar componentes",
       "projectName": "App de controle de atividade",
       "totalTime": 120,
-      "usedTime": 0,
+      "usedTime": 4,
       "deadLineDate": "20201103",
       "priority": 1,
       "status": "ativo",
@@ -77,6 +203,30 @@
           "stopTime": "20201021093417",
           "note": "",
           "totalSeconds": 7
+        },
+        {
+          "startTime": "20201021212905",
+          "stopTime": "20201021213138",
+          "note": "",
+          "totalSeconds": 153
+        },
+        {
+          "startTime": "20201021213547",
+          "stopTime": "20201021213552",
+          "note": "",
+          "totalSeconds": 5
+        },
+        {
+          "startTime": "20201021213802",
+          "stopTime": "20201021213820",
+          "note": "",
+          "totalSeconds": 18
+        },
+        {
+          "startTime": "20201021213858",
+          "stopTime": "20201021213918",
+          "note": "",
+          "totalSeconds": 20
         }
       ]
     },
@@ -86,7 +236,7 @@
       "description": "Criar lista de atividades pendentes",
       "projectName": "App de controle de atividade",
       "totalTime": 10,
-      "usedTime": 18,
+      "usedTime": 21,
       "deadLineDate": "20201103",
       "priority": 1,
       "status": "ativo",
@@ -138,6 +288,24 @@
           "stopTime": "20201021095420",
           "note": "",
           "totalSeconds": 445
+        },
+        {
+          "startTime": "20201021192857",
+          "stopTime": "20201021193149",
+          "note": "",
+          "totalSeconds": 172
+        },
+        {
+          "startTime": "20201021204445",
+          "stopTime": "20201021204451",
+          "note": "",
+          "totalSeconds": 6
+        },
+        {
+          "startTime": "20201021213554",
+          "stopTime": "20201021213603",
+          "note": "",
+          "totalSeconds": 9
         }
       ]
     },
@@ -157,6 +325,12 @@
           "stopTime": "20201021092426",
           "note": "",
           "totalSeconds": 2
+        },
+        {
+          "startTime": "20201021192850",
+          "stopTime": "20201021192855",
+          "note": "",
+          "totalSeconds": 5
         }
       ]
     }

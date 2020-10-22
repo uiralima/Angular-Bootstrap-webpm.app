@@ -25,6 +25,8 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 	public iconUnsubscribe: Subscription;
 	public remainTimeUnsubscribe: Subscription;
 
+	public detailShow: boolean = true;
+
 	constructor(private utils: UtilsService,
 		private globalData: GlobalDataService) {
 

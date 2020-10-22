@@ -9,12 +9,14 @@ import { AppContext, ContextFactoty } from './shared/context';
 import { ListActivityComponent } from './list-activity/list-activity.component';
 import { UtilsService } from './services/utils.service';
 import { JsonServerActivityService } from './services/implementations/activity.json-server.service';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentActivityComponent,
-    ListActivityComponent
+    ListActivityComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
