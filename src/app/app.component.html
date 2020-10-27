@@ -1,8 +1,5 @@
 <app-nav [title]="title"></app-nav>
 <div class="container">
-    <app-current-activity [currentActivity]="currentActivity" (activityStopped)="activityStopped()">
-    </app-current-activity>
-    <hr>
-    <app-list-activity [canStart]="currentActivity == undefined" [activities]="activities"
-        (startActivity)="startActivity($event)"></app-list-activity>
+    <router-outlet></router-outlet>
+    <!--<app-worker></app-worker>--> 
 </div>

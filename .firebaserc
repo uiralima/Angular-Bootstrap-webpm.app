@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "webpm-73a86": {
+      "hosting": {
+        "webpmApp": [
+          "webpm-73a86"
+        ]
+      }
+    }
+  }
+}

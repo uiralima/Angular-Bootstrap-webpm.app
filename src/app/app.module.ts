@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+
 
 import { AppComponent } from './app.component';
 import { CurrentActivityComponent } from './current-activity/current-activity.component';
@@ -10,21 +12,45 @@ import { ListActivityComponent } from './list-activity/list-activity.component';
 import { UtilsService } from './services/utils.service';
 import { JsonServerActivityService } from './services/implementations/activity.json-server.service';
 import { NavComponent } from './nav/nav.component';
+import { WorkerComponent } from './worker/worker.component';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './routes';
+import { IdentifyComponent } from './identify/identify.component';
+import { LoginComponent } from './identify/login/login.component';
+import { RegisterComponent } from './identify/register/register.component';
+import { FirebaseIdentityService } from './services/implementations/idetity.firebase.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentActivityComponent,
     ListActivityComponent,
-    NavComponent
+    NavComponent,
+    WorkerComponent,
+    LoginComponent,
+    IdentifyComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAAvFoh7c9jarFNac2E9PBrbaV1ezrcoOA",
+      authDomain: "webpm-73a86.firebaseapp.com",
+      databaseURL: "https://webpm-73a86.firebaseio.com",
+      projectId: "webpm-73a86",
+      storageBucket: "webpm-73a86.appspot.com",
+      messagingSenderId: "1065143550265",
+      appId: "1:1065143550265:web:8783f974e63d75023fe8e8"
+    }),
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     GlobalDataService,
     { provide: 'ActivityService', useClass: JsonServerActivityService},
+    { provide: 'IdentityService', useClass: FirebaseIdentityService},
     UtilsService,
     { provide: AppContext, useValue: ContextFactoty.CreateContext(isDevMode()) }
   ],

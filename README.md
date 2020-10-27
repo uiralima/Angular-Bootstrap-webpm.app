@@ -28,3 +28,10 @@ Para rodar a aplicação basta rodar o comando:
 Para fazer o deploy rode o comando:
 
     ng build --prod
+    
+## Ferramentas Utilizadas
+
+ - Angular - [https://angular.io/](https://angular.io/)
+ - Bootstrap - [https://getbootstrap.com/](https://getbootstrap.com/)
+ - NodeJS - [https://nodejs.org/](https://nodejs.org/)
+ - Json Server - [https://www.npmjs.com/package/json-server](https://www.npmjs.com/package/json-server)

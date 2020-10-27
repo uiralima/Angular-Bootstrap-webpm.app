@@ -1,0 +1,12 @@
+<form class="form-signin" [formGroup]="registerForm" (ngSubmit)="register()">
+    
+    <h2 class="h3 mb-3 font-weight-normal">Registre-se</h2>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+    <label for="inputPassword" class="sr-only">Senha</label>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+    <label for="inputPassword" class="sr-only">Confirma Senha</label>
+    <input formControlName="confirmPassword" type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirmar Senha" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+    {{registerForm.valid}}
+</form>
