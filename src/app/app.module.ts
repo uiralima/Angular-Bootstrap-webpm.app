@@ -20,6 +20,7 @@ import { LoginComponent } from './identify/login/login.component';
 import { RegisterComponent } from './identify/register/register.component';
 import { FirebaseIdentityService } from './services/implementations/idetity.firebase.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     { provide: 'ActivityService', useClass: JsonServerActivityService},
     { provide: 'IdentityService', useClass: FirebaseIdentityService},
     UtilsService,
+    NotificationService,
     { provide: AppContext, useValue: ContextFactoty.CreateContext(isDevMode()) }
   ],
   bootstrap: [AppComponent]

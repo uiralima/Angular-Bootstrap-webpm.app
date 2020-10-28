@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Activity } from '../models/activity.model';
 import { ActivityService } from '../services/activity.service';
+import { IIdentityService } from '../services/identity.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class WorkerComponent implements OnInit, OnDestroy {
   public activities: Activity[] = [];
 
   constructor(
-    @Inject('ActivityService') public activityService: ActivityService) { }
+    @Inject('ActivityService') public activityService: ActivityService,
+    @Inject('IdentityService') protected identityService: IIdentityService) { }
 
   ngOnDestroy(): void {
   }

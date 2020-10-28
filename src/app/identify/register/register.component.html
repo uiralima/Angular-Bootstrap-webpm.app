@@ -1,12 +1,25 @@
 <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="register()">
-    
+
     <h2 class="h3 mb-3 font-weight-normal">Registre-se</h2>
     <label for="inputEmail" class="sr-only">Email</label>
-    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email" autofocus>
+
     <label for="inputPassword" class="sr-only">Senha</label>
-    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
-    <label for="inputPassword" class="sr-only">Confirma Senha</label>
-    <input formControlName="confirmPassword" type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirmar Senha" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
-    {{registerForm.valid}}
+    <input formControlName="password" (keyup)="checkValidator()" type="password" id="inputPassword" class="form-control"
+        placeholder="Senha">
+
+    <label for="inputConfirmPassword" class="sr-only">Confirma Senha</label>
+    <input formControlName="confirmPassword" type="password" id="inputConfirmPassword" class="form-control"
+        placeholder="Confirmar Senha">
+
+    <small *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched"
+        class="form-text text-danger">Email com formato inválido</small>
+
+    <small *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched"
+        class="form-text text-danger">Senha deve ter no mínimo 6 caracteres</small>
+
+    <small *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched"
+        class="form-text text-danger">Senha e confirmação estão com valores diferentes</small>
+
+    <button [disabled]="disableCommands || registerForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
 </form>

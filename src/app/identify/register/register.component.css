@@ -1,7 +1,6 @@
 #inputPassword {
     margin-bottom: -1px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0;
 }
 #inputConfirmPassword {
     margin-bottom: 10px;

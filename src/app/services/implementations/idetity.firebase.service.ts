@@ -7,28 +7,65 @@ import { User } from 'src/app/models/user.models';
 
 @Injectable()
 export class FirebaseIdentityService implements IIdentityService {
-    constructor(private auth: AngularFireAuth) {}
 
-    public registerByEmailAndPassword(email: string, password: string): Observable<User> {
-        return from (this.auth.createUserWithEmailAndPassword(email, password)
-        .then((data: firebase.auth.UserCredential) => {
-            return this.toMyUser(data);
+    private userStarted: boolean = false;
+
+    private _currentUser: User = null;
+
+    constructor(private auth: AngularFireAuth) {
+        this.auth.languageCode = new Promise(() => 'pt-BR');
+        this.auth.onAuthStateChanged((user: firebase.User) => this.startUser(user));
+    }
+
+    private startUser(user: firebase.User): void {
+        if (user) {
+            this._currentUser = this.userToMyUser(user);
+        }
+        else {
+            this._currentUser = null;
+        }
+        this.userStarted = true;
+    }
+
+    public loaded(): Observable<boolean> {
+        return from(this.auth.currentUser.then((user) => {
+            this.startUser(user);
+            return true;
         }))
     }
 
+    public isAuthenticated(): boolean {
+        return this._currentUser != undefined;
+    }
+
+    public get currentUser(): User {
+        return this._currentUser;
+    }
+
+    public registerByEmailAndPassword(email: string, password: string): Observable<User> {
+        return from(this.auth.createUserWithEmailAndPassword(email, password)
+            .then((data: firebase.auth.UserCredential) => {
+                return this.credentialToMyUser(data);
+            }))
+    }
+
     public login(email: string, password: string): Observable<User> {
-        return from (this.auth.signInWithEmailAndPassword(email, password)
-        .then((data: firebase.auth.UserCredential) => {
-            return this.toMyUser(data);
-        }));
+        return from(this.auth.signInWithEmailAndPassword(email, password)
+            .then((data: firebase.auth.UserCredential) => {
+                return this.credentialToMyUser(data);
+            }));
     }
 
     public logoff(): Observable<any> {
-        return from (this.auth.signOut())
+        return from(this.auth.signOut())
     }
 
-    private toMyUser(credentials: firebase.auth.UserCredential): User {
+    private credentialToMyUser(credentials: firebase.auth.UserCredential): User {
         return new User(credentials.user.uid, credentials.user.email);
+    }
+
+    private userToMyUser(user: firebase.User): User {
+        return new User(user.uid, user.email);
     }
 
 }

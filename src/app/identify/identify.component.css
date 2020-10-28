@@ -1,5 +1,4 @@
 .container {
-    display: -ms-flexbox;
     display: grid;
     place-items: center;
     padding-top: 40px;
