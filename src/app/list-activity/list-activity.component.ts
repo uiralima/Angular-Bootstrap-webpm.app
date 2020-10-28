@@ -1,28 +1,41 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Activity } from '../models/activity.model';
+import { IListActivityCaller } from './list-activity.caller';
 
 @Component({
-  selector: 'app-list-activity',
-  templateUrl: './list-activity.component.html',
-  styleUrls: ['./list-activity.component.css']
+	selector: 'app-list-activity',
+	templateUrl: './list-activity.component.html',
+	styleUrls: ['./list-activity.component.css']
 })
 export class ListActivityComponent implements OnInit {
 
-  @Input() public activities: Activity[] = [];
+	private _caller: IListActivityCaller;
 
-  @Input() public canStart: boolean;
+	@Input() public activities: Activity[] = [];
 
-  @Output("startActivity") public startActivityEvent: EventEmitter<Activity> = new EventEmitter();
+	@Input() public canStart: boolean;
 
-  constructor() { }
+	@Output("startActivity") public startActivityEvent: EventEmitter<Activity> = new EventEmitter();
 
-  ngOnInit(): void {
-  }
+	constructor() { }
 
-  public startActivity(activity: Activity) {
-    if (this.canStart) {
-      this.startActivityEvent.emit(activity);
-    }
-  }
+	ngOnInit(): void {
+	}
+
+	public setCaller(caller: IListActivityCaller): void {
+		this._caller = caller;
+		this._caller.ActivitiesChanged.subscribe((activities: Activity[]) => {
+			this.activities = activities;
+		});
+		this._caller.CurrentActivityChanged.subscribe((activity: Activity) => {
+			this.canStart = activity == undefined;
+		});
+	}
+
+	public startActivity(activity: Activity) {
+		if (this.canStart) {
+			this.startActivityEvent.emit(activity);
+		}
+	}
 
 }

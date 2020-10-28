@@ -6,7 +6,7 @@
       "description": "Criar um novo componente para mostrar a atividade atual",
       "projectName": "App de controle de atividade",
       "totalTime": 120,
-      "usedTime": 74,
+      "usedTime": 76,
       "deadLineDate": "20201031",
       "priority": 1,
       "status": "ativo",
@@ -196,6 +196,60 @@
           "stopTime": "20201028104532",
           "note": "",
           "totalSeconds": 44
+        },
+        {
+          "startTime": "20201028153132",
+          "stopTime": "20201028153136",
+          "note": "",
+          "totalSeconds": 4
+        },
+        {
+          "startTime": "20201028153144",
+          "stopTime": "20201028153148",
+          "note": "",
+          "totalSeconds": 4
+        },
+        {
+          "startTime": "20201028155446",
+          "stopTime": "20201028155448",
+          "note": "",
+          "totalSeconds": 2
+        },
+        {
+          "startTime": "20201028155502",
+          "stopTime": "20201028155508",
+          "note": "",
+          "totalSeconds": 6
+        },
+        {
+          "startTime": "20201028155721",
+          "stopTime": "20201028155726",
+          "note": "",
+          "totalSeconds": 5
+        },
+        {
+          "startTime": "20201028160313",
+          "stopTime": "20201028160429",
+          "note": "",
+          "totalSeconds": 76
+        },
+        {
+          "startTime": "20201028162655",
+          "stopTime": "20201028162658",
+          "note": "",
+          "totalSeconds": 3
+        },
+        {
+          "startTime": "20201028162659",
+          "stopTime": "20201028162704",
+          "note": "",
+          "totalSeconds": 5
+        },
+        {
+          "startTime": "20201028171525",
+          "stopTime": "20201028171558",
+          "note": "",
+          "totalSeconds": 33
         }
       ]
     },
@@ -254,7 +308,7 @@
       "description": "Criar lista de atividades pendentes",
       "projectName": "App de controle de atividade",
       "totalTime": 10,
-      "usedTime": 21,
+      "usedTime": 22,
       "deadLineDate": "20201103",
       "priority": 1,
       "status": "ativo",
@@ -324,6 +378,18 @@
           "stopTime": "20201021213603",
           "note": "",
           "totalSeconds": 9
+        },
+        {
+          "startTime": "20201028155454",
+          "stopTime": "20201028155458",
+          "note": "",
+          "totalSeconds": 4
+        },
+        {
+          "startTime": "20201028155728",
+          "stopTime": "20201028155736",
+          "note": "",
+          "totalSeconds": 8
         }
       ]
     },

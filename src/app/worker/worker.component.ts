@@ -1,65 +1,104 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnDestroy, OnInit } from '@angular/core';
+import { IListActivityCaller } from '../list-activity/list-activity.caller';
+import { ListActivityComponent } from '../list-activity/list-activity.component';
 import { Activity } from '../models/activity.model';
 import { ActivityService } from '../services/activity.service';
 import { IIdentityService } from '../services/identity.service';
+import { IProjectCaller } from './project/project.caller';
 
 
 @Component({
-  selector: 'app-worker',
-  templateUrl: './worker.component.html',
-  styleUrls: ['./worker.component.css']
+	selector: 'app-worker',
+	templateUrl: './worker.component.html',
+	styleUrls: ['./worker.component.css']
 })
-export class WorkerComponent implements OnInit, OnDestroy {
+export class WorkerComponent implements OnInit, OnDestroy, IListActivityCaller, IProjectCaller {
 
-  public currentActivity: Activity = null;
+	private _currentActivity: Activity = null;
+	public set currentActivity(activity: Activity) {
+		this._currentActivity = activity;
+		this.CurrentActivityChanged.emit(this._currentActivity);
+	}
+	public get currentActivity(): Activity {
+		return this._currentActivity;
+	}
 
-  public activities: Activity[] = [];
+	private _activities: Activity[] = [];
+	public set activities(activities: Activity[]) {
+		this._activities = activities;
+		this.ActivitiesChanged.emit(this._activities);
+	}
+	public get activities(): Activity[] {
+		return this._activities;
+	}
 
-  constructor(
-    @Inject('ActivityService') public activityService: ActivityService,
-    @Inject('IdentityService') protected identityService: IIdentityService) { }
+	private _ref: ListActivityComponent;
 
-  ngOnDestroy(): void {
-  }
+	constructor(
+		@Inject('ActivityService') public activityService: ActivityService,
+		@Inject('IdentityService') protected identityService: IIdentityService) { }
 
-  ngOnInit(): void {
-    this.getAvaliable();
-    this.getCurrent();
-  }
+	public ActivitiesChanged: EventEmitter<Activity[]> = new EventEmitter();
+	public CurrentActivityChanged: EventEmitter<Activity> = new EventEmitter();
 
-  public getAvaliable() {
-    this.activityService.getAvaliable().subscribe(
-      (data: Activity[]) => {
-        this.activities = data;
-      })
-  }
+	private emitAll(): void {
+		this.ActivitiesChanged.emit(this.activities);
+		this.CurrentActivityChanged.emit(this.currentActivity);
+	}
 
-  public getCurrent() {
-    this.activityService.getCurrent().subscribe(
-      (currentActivity: Activity) => {
-        this.currentActivity = currentActivity;
-      })
-  }
+	ngOnDestroy(): void {
+	}
 
-  public activityStopped(reload: boolean = true) {
-    if (this.currentActivity) {
-      this.activityService.stopActivity(this.currentActivity).subscribe(
-        (data: Activity) => {
-          this.currentActivity = null;
-          if (reload) {
-            this.getAvaliable();
-          }
-        }
-      );
-    }
-  }
+	ngOnInit(): void {
+		this.getAvaliable();
+		this.getCurrent();
+	}
 
-  public startActivity(activity: Activity) {
-    this.activityService.startActivity(activity).subscribe(
-      (data: Activity) => {
-        this.currentActivity = data
-        this.getAvaliable();
-      }
-    );
-  }
+	public getAvaliable() {
+		this.activityService.getAvaliable().subscribe(
+			(data: Activity[]) => {
+				this.activities = data;
+			})
+	}
+
+	public getCurrent() {
+		this.activityService.getCurrent().subscribe(
+			(currentActivity: Activity) => {
+				this.currentActivity = currentActivity;
+			})
+	}
+
+	public activityStopped(reload: boolean = true) {
+		if (this.currentActivity) {
+			this.activityService.stopActivity(this.currentActivity).subscribe(
+				(data: Activity) => {
+					this.currentActivity = null;
+					if (reload) {
+						this.getAvaliable();
+					}
+				}
+			);
+		}
+	}
+
+	public startActivity(activity: Activity) {
+		this.activityService.startActivity(activity).subscribe(
+			(data: Activity) => {
+				this.currentActivity = data
+				this.getAvaliable();
+			}
+		);
+	}
+
+	public onActivate(componentReference: any): void {
+		if ("startActivityEvent" in componentReference) {
+			componentReference.startActivityEvent.subscribe((activity: Activity) => {
+				this.startActivity(activity);
+			});
+		}
+		if ("setCaller" in componentReference) {
+			componentReference.setCaller(this);
+		}
+		this.emitAll();
+	}
 }

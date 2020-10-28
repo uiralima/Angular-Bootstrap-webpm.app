@@ -36,3 +36,4 @@ Para fazer o deploy rode o comando:
  - Bootstrap - [https://getbootstrap.com/](https://getbootstrap.com/)
  - NodeJS - [https://nodejs.org/](https://nodejs.org/)
  - Json Server - [https://www.npmjs.com/package/json-server](https://www.npmjs.com/package/json-server)
+ - Firebase - [https://firebase.google.com/](https://firebase.google.com/)

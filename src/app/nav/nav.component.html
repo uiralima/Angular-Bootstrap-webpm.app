@@ -20,7 +20,7 @@
         <div class="col">
             <ul class="navbar-nav md-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link"  routerLink="/work">Home</a>
                 </li>
                 <li class="nav-item active" (click)="logOff()" *ngIf="isAuthenticated">
                     <a class="nav-link" href="#">Sair</a>
@@ -28,13 +28,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Cadastros
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" routerLink="work/project">Projetos</a>
                     </div>
                 </li>
             </ul>

@@ -21,6 +21,8 @@ import { RegisterComponent } from './identify/register/register.component';
 import { FirebaseIdentityService } from './services/implementations/idetity.firebase.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotificationService } from './services/notification.service';
+import { ProjectComponent } from './worker/project/project.component';
+import { FirebaseProjectService } from './services/implementations/project.firebase.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { NotificationService } from './services/notification.service';
     WorkerComponent,
     LoginComponent,
     IdentifyComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { NotificationService } from './services/notification.service';
     GlobalDataService,
     { provide: 'ActivityService', useClass: JsonServerActivityService},
     { provide: 'IdentityService', useClass: FirebaseIdentityService},
+    { provide: 'ProjectService', useClass: FirebaseProjectService},
     UtilsService,
     NotificationService,
     { provide: AppContext, useValue: ContextFactoty.CreateContext(isDevMode()) }
