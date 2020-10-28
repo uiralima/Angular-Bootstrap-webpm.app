@@ -11,13 +11,14 @@ Para simular o backend estou usando inicialmente o json-server com o arquivo dat
 
 ## TODO List:
 
- 1. Criar componente de trabalho principal e tirar o funcionamento do app.component.
- 2. Criar formulário de cadastro de projetos.
- 3. Criar formulário de cadastro de atividades.
- 4. Permitir adicionar anotações na atividade.
- 5. Possibilitar finalizar a atividade.
- 6. Possibilitar anexa link de arquivos à atividade.
- 7. Implementar uma interface de dados para persistir  no Firebase.
+ 1. ~~Criar componente de trabalho principal e tirar o funcionamento do app.component~~.
+ 2. ~~Autenticar usuários pelo Firebase.~~
+ 3. Criar formulário de cadastro de projetos.
+ 4. Criar formulário de cadastro de atividades.
+ 5. Permitir adicionar anotações na atividade.
+ 6. Possibilitar finalizar a atividade.
+ 7. Possibilitar anexa link de arquivos à atividade.
+ 8. Implementar uma interface de dados para persistir projetos e atividades no Firebase, excluindo assim a necessidade do json-server.
 
 ## Iniciar servidor
 Para rodar a aplicação basta rodar o comando:
