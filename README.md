@@ -93,6 +93,12 @@ Até que tudo esteja rodando no Firebase, para simular o backend estou usando o 
 
 11. Implementar uma interface de dados para ~~persistir projetos~~ e atividades no Firebase, excluindo assim a necessidade do json-server.
 
+12. Implementar opção "Lembrar" na tela de autenticação.
+
+13. Implementar verificação de email.
+
+14. Implementar recuperação de senha.
+
   
 
 ## Iniciar servidor

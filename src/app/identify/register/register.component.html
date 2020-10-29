@@ -21,5 +21,9 @@
     <small *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched"
         class="form-text text-danger">Senha e confirmação estão com valores diferentes</small>
 
-    <button [disabled]="disableCommands || registerForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+    <button [disabled]="disableCommands || registerForm.invalid" class="btn btn-lg btn-primary btn-block"
+        type="submit">Registrar</button>
+    <div class="login">
+        <a routerLink="/">Autenticar</a>
+    </div>
 </form>
