@@ -3,3 +3,13 @@ html,
 body {
   min-height: vh;
 }
+
+.my-space-botton {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 576px) {
+  .my-btn-explain {
+    display: none;
+  }
+}

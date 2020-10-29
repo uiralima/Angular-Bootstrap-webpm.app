@@ -2,5 +2,8 @@ import { Observable } from 'rxjs';
 import { Project } from '../models/project.model';
 
 export interface IProjectService {
-    createProject(fullnema: string): Observable<Project>;
+    create(fullnema: string): Observable<void>;
+    getAll(): Observable<Project[]>;
+    update(project: Project): Observable<void>;
+    delete(projectId: string): Observable<void>;
 }

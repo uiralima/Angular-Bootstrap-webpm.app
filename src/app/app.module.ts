@@ -19,7 +19,7 @@ import { IdentifyComponent } from './identify/identify.component';
 import { LoginComponent } from './identify/login/login.component';
 import { RegisterComponent } from './identify/register/register.component';
 import { FirebaseIdentityService } from './services/implementations/idetity.firebase.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationService } from './services/notification.service';
 import { ProjectComponent } from './worker/project/project.component';
 import { FirebaseProjectService } from './services/implementations/project.firebase.service';
@@ -40,6 +40,7 @@ import { FirebaseProjectService } from './services/implementations/project.fireb
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAAvFoh7c9jarFNac2E9PBrbaV1ezrcoOA",
       authDomain: "webpm-73a86.firebaseapp.com",

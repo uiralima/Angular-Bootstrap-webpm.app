@@ -1,9 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { from, Observable, throwError } from 'rxjs';
 import { Project } from 'src/app/models/project.model';
 import { IProjectService } from '../project.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { IIdentityService } from '../identity.service';
+import { catchError, filter, map } from 'rxjs/operators';
+import { splitAtColon } from '@angular/compiler/src/util';
 
 @Injectable()
 export class FirebaseProjectService implements IProjectService {
@@ -13,19 +15,31 @@ export class FirebaseProjectService implements IProjectService {
         @Inject('IdentityService') protected identityService: IIdentityService,
     ) {}    
 
-    public createProject(fullname: string): Observable<Project> {
-        let project = new Project();
+    public create(fullname: string): Observable<void> {
+        let project = new Project(this.identityService.currentUser.uid);
+        project.id = this.firestore.createId();
         project.fullname = fullname;
-        project.ownerId = this.identityService.currentUser.uid;
-        let data: firebase.firestore.DocumentData;
-        //project.roles = {};
-        //project.roles[this.identityService.currentUser.uid] = 'owner';
-        //return from (this.firestore.doc<Project>("prj/" + this.identityService.currentUser.uid).collection("projects").add(project)
-        return from (this.firestore.collection("projects").doc(this.firestore.createId()).set(Object.assign({}, project))
-        .then((data) =>
-        {
-            console.log("Data:" + data)
-            return project;
-        }));
+        return from (this.firestore.collection(`projects`).doc(project.id).set({...project}));
+    }
+
+    public getAll(): Observable<Project[]> {
+        return this.firestore.collection<Project>("projects").valueChanges().pipe(
+            map((values) => {
+                let result = values.filter((f) => {
+                    return ((f.owner == this.identityService.currentUser.uid) || 
+                    (f.reader.indexOf(this.identityService.currentUser.uid) >= 0) ||
+                    (f.writer.indexOf(this.identityService.currentUser.uid) >= 0))
+                });
+                return result.sort((a, b) => (a.fullname > b.fullname) ? 1 : -1);
+            }),
+        );
+    }
+
+    public update(project: Project): Observable<void> {
+        return from (this.firestore.collection<Project>("projects").doc(project.id).set({...project}));
+    }
+
+    public delete(projectId: string): Observable<void> {
+        return from (this.firestore.collection<Project>("projects").doc(projectId).delete());
     }
 }
