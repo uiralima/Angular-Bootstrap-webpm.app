@@ -8,6 +8,10 @@ body {
   margin-bottom: 5px;
 }
 
+.my-pointer {
+  cursor: pointer;
+}
+
 @media (max-width: 576px) {
   .my-btn-explain {
     display: none;

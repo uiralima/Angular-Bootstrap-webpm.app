@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationService } from './services/notification.service';
 import { ProjectComponent } from './worker/project/project.component';
 import { FirebaseProjectService } from './services/implementations/project.firebase.service';
+import { InviteComponent } from './worker/invite/invite.component';
+import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { FirebaseProjectService } from './services/implementations/project.fireb
     LoginComponent,
     IdentifyComponent,
     RegisterComponent,
-    ProjectComponent
+    ProjectComponent,
+    InviteComponent,
+    MobileMenuComponent
   ],
   imports: [
     BrowserModule,
