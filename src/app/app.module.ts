@@ -25,6 +25,7 @@ import { ProjectComponent } from './worker/project/project.component';
 import { FirebaseProjectService } from './services/implementations/project.firebase.service';
 import { InviteComponent } from './worker/invite/invite.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import { ProjectDetailComponent } from './worker/project-detail/project-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     RegisterComponent,
     ProjectComponent,
     InviteComponent,
-    MobileMenuComponent
+    MobileMenuComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,

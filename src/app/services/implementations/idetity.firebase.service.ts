@@ -4,22 +4,35 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { from } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/models/user.models';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable()
 export class FirebaseIdentityService implements IIdentityService {
+
+    private collection: AngularFirestoreCollection<User>;
 
     private userStarted: boolean = false;
 
     private _currentUser: User = null;
 
-    constructor(private auth: AngularFireAuth) {
+    constructor(private auth: AngularFireAuth,
+        protected firestore: AngularFirestore) {
         this.auth.languageCode = new Promise(() => 'pt-BR');
+        this.collection = this.firestore.collection<User>("users");
         this.auth.onAuthStateChanged((user: firebase.User) => this.startUser(user));
     }
 
     private startUser(user: firebase.User): void {
         if (user) {
-            this._currentUser = this.userToMyUser(user);
+            this.collection.doc(user.uid).get().subscribe((loadedUser) => { 
+                if (!loadedUser.exists) {
+                    this.collection.doc(user.uid).set({ ...this.userToMyUser(user) }).then().catch();
+                    this._currentUser = this.userToMyUser(user);
+                }
+                else {
+                    this._currentUser = <User>loadedUser.data();
+                }
+            })
         }
         else {
             this._currentUser = null;
@@ -45,7 +58,8 @@ export class FirebaseIdentityService implements IIdentityService {
     public registerByEmailAndPassword(email: string, password: string): Observable<User> {
         return from(this.auth.createUserWithEmailAndPassword(email, password)
             .then((data: firebase.auth.UserCredential) => {
-                return this.credentialToMyUser(data);
+                let user = this.credentialToMyUser(data);
+                return user;
             }))
     }
 
@@ -61,11 +75,11 @@ export class FirebaseIdentityService implements IIdentityService {
     }
 
     private credentialToMyUser(credentials: firebase.auth.UserCredential): User {
-        return new User(credentials.user.uid, credentials.user.email);
+        return new User(credentials.user.uid, "", credentials.user.email);
     }
 
     private userToMyUser(user: firebase.User): User {
-        return new User(user.uid, user.email);
+        return new User(user.uid, "", user.email);
     }
 
 }

@@ -21,7 +21,8 @@
         </div>
     </div>
     <div class="row" *ngFor="let project of myProjects">
-        <div class="col" *ngIf="((filter.length == 0) || (project.fullname.indexOf(filter) >= 0))">{{project.fullname}}
+        <div class="col" *ngIf="((filter.length == 0) || (project.fullname.indexOf(filter) >= 0))">
+            <a [routerLink]="['/work/project', project.id]" class="text-color-info">{{project.fullname}}</a>
         </div>
         <div class="col-auto my-space-botton" *ngIf="((filter.length == 0) || (project.fullname.indexOf(filter) >= 0))">
             <button [disabled]="project.owner !== uid" type="button" class="btn btn-outline-danger" (click)="deleteProject(project.id)">

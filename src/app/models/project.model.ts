@@ -5,7 +5,8 @@ export class Project extends Roleable {
     constructor(owner: string) {
         super(owner);    
     }
-    public id: string;
-    public fullname: string;
+    public id: string = "";
+    public fullname: string = "";
     public activities: Activity[] = [];
+    public description: string = "";
 }

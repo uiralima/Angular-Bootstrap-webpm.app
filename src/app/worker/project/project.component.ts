@@ -52,13 +52,14 @@ export class ProjectComponent implements OnInit {
 		if (this.projectForm.valid) {
 			this.disableCommands = true;
 			this.projectService.create(this.projectForm.value.projectName)
-				.subscribe(() => {
-					this.disableCommands = false;
-					$('#newProjectModal').modal('hide');
-					this.projectForm.value.projectName = '';
-				},
+				.subscribe(
+					() => {
+						this.disableCommands = false;
+						$('#newProjectModal').modal('hide');
+						this.projectForm.value.projectName = '';
+					},
 					(error) => {
-						this.notification.showError(error);
+						this.notification.showError(error.message);
 						this.disableCommands = false;
 					});
 		}

@@ -6,4 +6,5 @@ export interface IProjectService {
     getAll(): Observable<Project[]>;
     update(project: Project): Observable<void>;
     delete(projectId: string): Observable<void>;
+    get(projectId: string): Observable<Project>;
 }

@@ -6,11 +6,11 @@
     <label for="inputPassword" class="sr-only">Senha</label>
     <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
 
-    <div class="checkbox mb-3">
+    <!--<div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Lembrar
         </label>
-    </div>
+    </div>-->
 
     <small *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched"
         class="form-text text-danger">Email com formato inválido</small>
@@ -18,7 +18,7 @@
     <small *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched"
         class="form-text text-danger">Senha deve ter no mínimo 6 caracteres</small>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Autenticar</button>
+    <button [disabled]="disableCommands || loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Autenticar</button>
     <div class="register">
         <a routerLink="/register">Registrar</a>
     </div>

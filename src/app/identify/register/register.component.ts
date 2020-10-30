@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
 			this.disableCommands = true;
 			this.identityService.registerByEmailAndPassword(this.registerForm.value.email, this.registerForm.value.password)
 				.subscribe(
-					(data: User) => {
+					() => {
 						this.router.navigate(['']);
 						this.disableCommands = false;
 					},

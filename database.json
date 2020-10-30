@@ -6,7 +6,7 @@
       "description": "Criar um novo componente para mostrar a atividade atual",
       "projectName": "App de controle de atividade",
       "totalTime": 120,
-      "usedTime": 78,
+      "usedTime": 79,
       "deadLineDate": "20201031",
       "priority": 1,
       "status": "ativo",
@@ -268,6 +268,18 @@
           "stopTime": "20201029191314",
           "note": "",
           "totalSeconds": 11
+        },
+        {
+          "startTime": "20201030093759",
+          "stopTime": "20201030093832",
+          "note": "",
+          "totalSeconds": 33
+        },
+        {
+          "startTime": "20201030094516",
+          "stopTime": "20201030094526",
+          "note": "",
+          "totalSeconds": 10
         }
       ]
     },

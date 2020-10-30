@@ -67,7 +67,7 @@ Até que tudo esteja rodando no Firebase, para simular o backend estou usando o 
 
   json-server --watching database.json
 
-  ## TODO List:
+  ## TODO List para Versão inicial:
 
   
 
@@ -81,23 +81,29 @@ Até que tudo esteja rodando no Firebase, para simular o backend estou usando o 
 
 5. ~~Criação da página de menus para mobile.~~
 
-6. Criar formulário de gerenciamento de projetos.
+6. ~~Criar formulário de gerenciamento de projetos.~~
 
-7. Criar lógica de criação e aceite, recusa de convites.
+7. ~~Registrar o usuário ao registrar.~~
 
-8. Permitir adicionar anotações na atividade.
+8. Criar lógica de criação e aceite, recusa de convites.
 
-9. Possibilitar finalizar a atividade.
+9. Permitir adicionar anotações na atividade.
 
-10. Possibilitar anexa link de arquivos à atividade.
+10. Possibilitar finalizar a atividade.
 
-11. Implementar uma interface de dados para ~~persistir projetos~~ e atividades no Firebase, excluindo assim a necessidade do json-server.
+11. Possibilitar anexa link de arquivos à atividade.
 
-12. Implementar opção "Lembrar" na tela de autenticação.
+12. Implementar uma interface de dados para ~~persistir projetos~~ e atividades no Firebase, excluindo assim a necessidade do json-server.
 
-13. Implementar verificação de email.
+13. Implementar opção "Lembrar" na tela de autenticação.
 
-14. Implementar recuperação de senha.
+14. Implementar verificação de email.
+
+15. Implementar recuperação de senha.
+
+## Melhorias futuras
+
+1. Implementar histórico de alteração nos projetos e atividades.
 
   
 
