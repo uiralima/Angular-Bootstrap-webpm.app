@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, OnDestroy, OnInit } from '@angular/cor
 import { IListActivityCaller } from '../list-activity/list-activity.caller';
 import { ListActivityComponent } from '../list-activity/list-activity.component';
 import { Activity } from '../models/activity.model';
-import { ActivityService } from '../services/activity.service';
+import { IActivityService } from '../services/activity.service';
 import { IIdentityService } from '../services/identity.service';
 import { IProjectCaller } from './project/project.caller';
 
@@ -35,7 +35,7 @@ export class WorkerComponent implements OnInit, OnDestroy, IListActivityCaller, 
 	private _ref: ListActivityComponent;
 
 	constructor(
-		@Inject('ActivityService') public activityService: ActivityService,
+		@Inject('ActivityService') public activityService: IActivityService,
 		@Inject('IdentityService') protected identityService: IIdentityService) { }
 
 	public ActivitiesChanged: EventEmitter<Activity[]> = new EventEmitter();

@@ -9,6 +9,7 @@ import { ProjectComponent } from './worker/project/project.component';
 import { InviteComponent } from './worker/invite/invite.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { ProjectDetailComponent } from './worker/project-detail/project-detail.component';
+import { ActivityComponent } from './worker/activity/activity.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToWork = () => redirectLoggedInTo(['work']);
@@ -35,6 +36,7 @@ export const ROUTES: Routes = [
             { path: '', component: ListActivityComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
             { path: 'project', component: ProjectComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
             { path: 'project/:id', component: ProjectDetailComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
+            { path: 'project/:projectId/activities', component: ActivityComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
             { path: 'invite', component: InviteComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } }
         ], canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
     }

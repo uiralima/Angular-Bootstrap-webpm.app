@@ -40,7 +40,7 @@
         <div *ngIf="detailShow else resume">
             <div class="card-body" *ngIf="currentActivity else activityEmpty">
                 <h5 class="card-title" [innerHTML]="currentActivity.fullname"></h5>
-                <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="currentActivity.projectName"></h6>
+                <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="currentActivity.projectId"></h6>
                 <h6 *ngIf="remainTime >= 0 else lateActivity" class="card-text positive">Restam: {{remainTime}}<span
                         class="min">min</span>/{{currentActivity.totalTime}}<span class="min">min</span></h6>
                 <ng-template #lateActivity>

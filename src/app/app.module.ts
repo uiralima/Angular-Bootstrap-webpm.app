@@ -26,6 +26,9 @@ import { FirebaseProjectService } from './services/implementations/project.fireb
 import { InviteComponent } from './worker/invite/invite.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { ProjectDetailComponent } from './worker/project-detail/project-detail.component';
+import { ActivityComponent } from './worker/activity/activity.component';
+import { ActivityDetailComponent } from './worker/activity-detail/activity-detail.component';
+import { FirebaseActivityService } from './services/implementations/activity.firebase.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { ProjectDetailComponent } from './worker/project-detail/project-detail.c
     ProjectComponent,
     InviteComponent,
     MobileMenuComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    ActivityComponent,
+    ActivityDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,7 @@ import { ProjectDetailComponent } from './worker/project-detail/project-detail.c
   ],
   providers: [
     GlobalDataService,
-    { provide: 'ActivityService', useClass: JsonServerActivityService},
+    { provide: 'ActivityService', useClass: FirebaseActivityService},
     { provide: 'IdentityService', useClass: FirebaseIdentityService},
     { provide: 'ProjectService', useClass: FirebaseProjectService},
     UtilsService,

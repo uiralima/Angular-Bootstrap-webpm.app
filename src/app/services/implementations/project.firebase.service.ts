@@ -1,7 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { from, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
+import { from, Observable, Observer, of } from 'rxjs';
+import { Md5 } from 'ts-md5/dist/md5';
+import { Activity } from 'src/app/models/activity.model';
 import { Project } from 'src/app/models/project.model';
 import { IIdentityService } from '../identity.service';
 import { IProjectService } from '../project.service';
@@ -43,49 +45,91 @@ it("shoud paginate", () => {
 
 @Injectable()
 export class FirebaseProjectService implements IProjectService {
+
     private collection: AngularFirestoreCollection<Project>;
+
+    private _projects: Project[] = [];
+
+    private ListChanged: EventEmitter<Project[]> = new EventEmitter();
 
     constructor(
         protected firestore: AngularFirestore,
         @Inject('IdentityService') protected identityService: IIdentityService,
     ) {
         this.collection = this.firestore.collection<Project>("projects");
-    }    
+        this.collection.valueChanges().subscribe(
+            (values) => {
+                this._projects = values;
+                this.ListChanged.emit(this._projects);
+            });
+    }
 
     public create(fullname: string): Observable<void> {
         let project = new Project(this.identityService.currentUser.uid);
         project.id = this.firestore.createId();
         project.fullname = fullname;
-        return from (this.collection.doc(project.id).set({...project}));
+        return from(this.collection.doc(project.id).set({ ...project }));
     }
 
     public getAll(): Observable<Project[]> {
-        return this.collection.valueChanges().pipe(
-            map((values) => {
-                let result = values.filter((f) => {
-                    return ((f.owner == this.identityService.currentUser.uid) || 
-                    (f.reader.indexOf(this.identityService.currentUser.uid) >= 0) ||
-                    (f.writer.indexOf(this.identityService.currentUser.uid) >= 0))
-                });
-                return result.sort((a, b) => (a.fullname > b.fullname) ? 1 : -1);
-            }),
-        );
+        return new Observable((obeserver: Observer<Project[]>) => {
+            this.ListChanged.subscribe(
+                (projects) => obeserver.next(projects.sort((a, b) => (a.fullname > b.fullname) ? 1 : -1))
+            );
+            obeserver.next(this._projects.sort((a, b) => (a.fullname > b.fullname) ? 1 : -1));
+        })
+    }
+
+    private getById(projectId: string): Project {
+        for (let i = 0; i < this._projects.length; i++) {
+            if (this._projects[i].id === projectId) {
+                return this._projects[i];
+            }
+        }
+        return null;
     }
 
     public get(projectId: string): Observable<Project> {
-        return this.collection.doc(projectId).get().pipe
-        (
-            map((value) => {
-                return <Project>value.data();
-            })
-        )
+        return new Observable((observer: Observer<Project>) => {
+            let result = this.getById(projectId);
+            let resultHash = Md5.hashStr(JSON.stringify(result));
+            this.ListChanged.subscribe((projects: Project[]) => {
+                let newVersion = this.getById(projectId);
+                let newVersionHash = Md5.hashStr(JSON.stringify(newVersion));
+                if (resultHash !== newVersionHash) {
+                    resultHash = newVersionHash;
+                    observer.next(newVersion);
+                }
+            });
+            observer.next(result);
+        })
     }
 
     public update(project: Project): Observable<void> {
-        return from (this.collection.doc(project.id).set({...project}));
+        return from(this.collection.doc(project.id).set({ ...project }));
+    }
+
+    public updateActivity(projectId: string, activities: Activity[]): Observable<void> {
+        var aux = activities.map((obj)=> {
+            var auxEv = obj.events.map((ev) => {
+                return Object.assign({}, ev)
+            })
+            obj.events = auxEv;
+            return Object.assign({}, obj)
+        });
+        return from(this.collection.doc(projectId).update({
+            activities: aux
+        }));
     }
 
     public delete(projectId: string): Observable<void> {
-        return from (this.collection.doc(projectId).delete());
+        return from(this.collection.doc(projectId).delete());
+    }
+
+    public addActivity(projectId: string, activity: Activity): Observable<void> {
+        activity.id = this.firestore.createId();
+        return from(this.collection.doc(projectId).update({
+            activities: firebase.firestore.FieldValue.arrayUnion({ ...activity })
+        }))
     }
 }

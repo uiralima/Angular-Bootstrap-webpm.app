@@ -5,13 +5,13 @@ import { map } from 'rxjs/operators';
 import { Activity } from 'src/app/models/activity.model';
 import { Event } from 'src/app/models/event.modal';
 import { AppContext } from 'src/app/shared/context';
-import { ActivityService } from '../activity.service';
+import { IActivityService } from '../activity.service';
 import { GlobalDataService } from '../global-data.service';
 import { UtilsService } from '../utils.service';
 
 
 @Injectable()
-export class JsonServerActivityService implements ActivityService {
+export class JsonServerActivityService implements IActivityService {
     constructor(protected http: HttpClient,
         protected globalData: GlobalDataService,
         protected utils: UtilsService,

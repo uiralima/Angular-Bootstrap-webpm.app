@@ -60,17 +60,9 @@ O aplicativo utiliza uma conta minha do Firebase, caso queira mudar a conta, bas
     appId:  "1:106514754215:web:8783f974e63d75023fe8e8"
     })
 
-## Simulação de Backend
-
-  
-Até que tudo esteja rodando no Firebase, para simular o backend estou usando o json-server com o arquivo database.json para iniciá-lo basta rodar o comando:
-
-  json-server --watching database.json
-
   ## TODO List para Versão inicial:
 
   
-
 1. ~~Criar componente de trabalho principal e tirar o funcionamento do app.component~~.
 
 2. ~~Autenticar usuários pelo Firebase.~~
@@ -93,7 +85,7 @@ Até que tudo esteja rodando no Firebase, para simular o backend estou usando o 
 
 11. Possibilitar anexa link de arquivos à atividade.
 
-12. Implementar uma interface de dados para ~~persistir projetos~~ e atividades no Firebase, excluindo assim a necessidade do json-server.
+12. ~~Implementar uma interface de dados para ~~persistir projetos~~ e atividades no Firebase, excluindo assim a necessidade do json-server.~~
 
 13. Implementar opção "Lembrar" na tela de autenticação.
 
@@ -104,6 +96,10 @@ Até que tudo esteja rodando no Firebase, para simular o backend estou usando o 
 ## Melhorias futuras
 
 1. Implementar histórico de alteração nos projetos e atividades.
+
+2. Melhorar a guarda das rotas para projetos/atividades para só liberar o acesso a usuários pertinentes ao projeto.
+
+3. Mostrar mensagens de validação nos formulários relacionados a projetos e atividades
 
   
 
@@ -135,6 +131,6 @@ ng build --prod
 
 - NodeJS - [https://nodejs.org/](https://nodejs.org/)
 
-- Json Server - [https://www.npmjs.com/package/json-server](https://www.npmjs.com/package/json-server)
-
 - Firebase - [https://firebase.google.com/](https://firebase.google.com/)
+
+- Ts-md5 - [https://www.npmjs.com/package/ts-md5](https://www.npmjs.com/package/ts-md5)

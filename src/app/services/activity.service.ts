@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Activity } from '../models/activity.model';
 
-export interface ActivityService {
+export interface IActivityService {
     getAll(): Observable<Activity[]>;
     getAvaliable(): Observable<Activity[]>;
     getCurrent(): Observable<Activity>;
