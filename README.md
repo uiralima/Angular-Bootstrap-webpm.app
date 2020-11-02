@@ -81,7 +81,7 @@ O aplicativo utiliza uma conta minha do Firebase, caso queira mudar a conta, bas
 
 9. Permitir adicionar anotações na atividade.
 
-10. Possibilitar finalizar a atividade.
+10. ~~Possibilitar finalizar a atividade.~~
 
 11. Possibilitar anexa link de arquivos à atividade.
 

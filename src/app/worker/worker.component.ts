@@ -70,7 +70,20 @@ export class WorkerComponent implements OnInit, OnDestroy, IListActivityCaller, 
 
 	public activityStopped(reload: boolean = true) {
 		if (this.currentActivity) {
-			this.activityService.stopActivity(this.currentActivity).subscribe(
+			this.activityService.stopActivity(this.currentActivity, false).subscribe(
+				(data: Activity) => {
+					this.currentActivity = null;
+					if (reload) {
+						this.getAvaliable();
+					}
+				}
+			);
+		}
+	}
+
+	public finishActivity(reload: boolean = true) {
+		if (this.currentActivity) {
+			this.activityService.stopActivity(this.currentActivity, true).subscribe(
 				(data: Activity) => {
 					this.currentActivity = null;
 					if (reload) {

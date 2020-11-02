@@ -20,6 +20,8 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 
 	@Output() public activityStopped: EventEmitter<boolean> = new EventEmitter();
 
+	@Output() public activityFinish: EventEmitter<boolean> = new EventEmitter();
+
 	@Output() public requestStartActive: EventEmitter<number> = new EventEmitter();
 
 	public iconUnsubscribe: Subscription;
@@ -102,6 +104,12 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 		this.doUnsubscribes();
 		this.iconStep = 0;
 		this.activityStopped.emit(true);
+	}
+
+	public finishActivity(): void {
+		this.doUnsubscribes();
+		this.iconStep = 0;
+		this.activityFinish.emit(true);
 	}
 
 	private doUnsubscribes(): void {

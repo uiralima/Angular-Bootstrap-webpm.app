@@ -6,5 +6,5 @@ export interface IActivityService {
     getAvaliable(): Observable<Activity[]>;
     getCurrent(): Observable<Activity>;
     startActivity(activity: Activity): Observable<Activity>;
-    stopActivity(activity: Activity): Observable<Activity>
+    stopActivity(activity: Activity, finish: boolean): Observable<Activity>
 }

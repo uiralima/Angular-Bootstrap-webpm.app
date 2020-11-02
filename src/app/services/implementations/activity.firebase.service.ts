@@ -113,17 +113,22 @@ export class FirebaseActivityService implements IActivityService {
         }
     }
 
-    public stopActivity(activity: Activity): Observable<Activity> {
+    public stopActivity(activity: Activity, finish: boolean): Observable<Activity> {
         if (this.appContext.fakeServer) {
             let event = activity.events[activity.events.length - 1];
             event.stopTime = this.utils.nowToMyString();
             event.totalSeconds = ((+this.utils.dateFromMyString(event.stopTime)) - (+this.utils.dateFromMyString(event.startTime))) / 1000;
-            activity.status = "ativo";
             let totalSeconds = 0;
             activity.events.map((event) => {
                 totalSeconds += event.totalSeconds;
             })
             activity.usedTime = Math.floor(totalSeconds / 60);
+            if (finish) {
+                activity.status = "finalizado"
+            }
+            else {
+                activity.status = "ativo";
+            }
             this.projectService.get(activity.projectId).pipe(
                 take(1)
               ).subscribe((project: Project) => {

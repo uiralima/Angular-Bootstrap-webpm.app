@@ -50,7 +50,7 @@ export class JsonServerActivityService implements IActivityService {
         return this.http.put<Activity>(this.globalData.serviceUrl + "activities/" + activity.id, activity);
     }
 
-    stopActivity(activity: Activity): Observable<Activity> {
+    stopActivity(activity: Activity, finish: boolean): Observable<Activity> {
         // A lógica abaixo estará no servidor
         if (this.appContext.fakeServer) {
             let event = activity.events[activity.events.length - 1];
