@@ -70,7 +70,7 @@ import { FirebaseActivityService } from './services/implementations/activity.fir
     { provide: 'ProjectService', useClass: FirebaseProjectService},
     UtilsService,
     NotificationService,
-    { provide: AppContext, useValue: ContextFactoty.CreateContext(isDevMode()) }
+    { provide: AppContext, useValue: ContextFactoty.CreateContext(true) }
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,10 @@
 
 Projeto para controlar atividades a serem feitas e gerenciamento de projetos e de time de trabalho, foi feito afim de demonstração de utilização do Angular 9.
 
+## URL do projeto
+
+https://webpm-73a86.web.app/
+
   
 
 ## Funcionamento
