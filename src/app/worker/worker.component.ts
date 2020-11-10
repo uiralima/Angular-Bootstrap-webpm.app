@@ -95,6 +95,8 @@ export class WorkerComponent implements OnInit, OnDestroy, IListActivityCaller, 
 	}
 
 	public startActivity(activity: Activity) {
+		console.log("Atividade: ", activity);
+		
 		this.activityService.startActivity(activity).subscribe(
 			(data: Activity) => {
 				this.currentActivity = data
@@ -107,6 +109,9 @@ export class WorkerComponent implements OnInit, OnDestroy, IListActivityCaller, 
 		if ("startActivityEvent" in componentReference) {
 			componentReference.startActivityEvent.subscribe((activity: Activity) => {
 				this.startActivity(activity);
+			});
+			componentReference.activityStopped.subscribe((reload: boolean) => {
+				this.activityStopped(reload)
 			});
 		}
 		if ("setCaller" in componentReference) {

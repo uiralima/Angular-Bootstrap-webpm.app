@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="card">
+<div class="container" start-activity-dropzone>
+    <div class="card" draggable="true" current-activity-item>
         <h5 class="card-header">
             <div class="row">
                 <div class="col">
@@ -135,7 +135,8 @@
             </div>
             <ng-template #activityEmpty>
                 <div class="card-body">
-                    <h5 class="card-title">Nenhuma</h5>
+                    <h5 class="d-none d-sm-block card-title">Inicie ou Arrate uma atividade</h5>
+                    <h5 class="d-block d-sm-none card-title">Inicie uma atividade</h5>
                 </div>
             </ng-template>
         </div>

@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="card">
+    <div class="card" stop-activity-dropzone>
         <h5 class="card-header">Atividades Pendentes</h5>
         <div class="card-body" *ngIf="activities.length > 0 else emptyQueue">
-            <div class="card" *ngFor="let activity of activities">
-                <div class="card-body">
+            <div activity-item class="card" *ngFor="let activity of activities">
+                <div draggable="true" class="card-body" [id]="'draggable-item-'+activity.id">
                     <h5 class="card-title" [innerHTML]="activity.fullname"></h5>
-                    <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="activity.projectName"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" [innerHTML]="activity.projectId"></h6>
                     <p class="card-text" [innerHTML]="activity.description"></p>
                     <button [disabled]="!canStart" (click)="startActivity(activity)" type="button" class="btn btn-primary">Iniciar</button>
                 </div>

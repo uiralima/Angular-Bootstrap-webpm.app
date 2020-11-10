@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { max } from 'rxjs/operators';
 import { Activity } from '../models/activity.model';
@@ -10,7 +10,7 @@ import { UtilsService } from '../services/utils.service';
 	templateUrl: './current-activity.component.html',
 	styleUrls: ['./current-activity.component.css']
 })
-export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
+export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit, AfterViewChecked {
 
 	public iconStep: number = 0;
 	public remainTime: number = 0;
@@ -24,6 +24,8 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 
 	@Output() public requestStartActive: EventEmitter<number> = new EventEmitter();
 
+	@Output("startActivity") public startActivityEvent: EventEmitter<Activity> = new EventEmitter();
+
 	public iconUnsubscribe: Subscription;
 	public remainTimeUnsubscribe: Subscription;
 
@@ -32,6 +34,25 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 	constructor(private utils: UtilsService,
 		private globalData: GlobalDataService) {
 
+	}
+
+	ngAfterViewInit(): void {
+		const dropZones = document.querySelectorAll('[start-activity-dropzone]')
+		dropZones.forEach((dz: any) => {
+			dz.ondragover = e => this.currentActivity ? null : e.preventDefault()
+			dz.ondrop = e => {
+				const activity = <Activity>JSON.parse(e.dataTransfer.getData("item"))
+				this.startActivityEvent.emit(activity)
+			}
+		})
+	}
+
+	ngAfterViewChecked(): void {
+		if (this.currentActivity) {
+			(<any>document.querySelector('[current-activity-item]')).ondragstart = (e: any) => {
+				e.dataTransfer.setData("item", JSON.stringify(this.currentActivity))
+			}
+		}
 	}
 
 	ngOnDestroy(): void {
@@ -52,6 +73,10 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 				this.percentageTime = this.calculateRemainPercentage(this.remainTime);
 			})
 		}
+		if ((!changes.currentActivity.currentValue) && (changes.currentActivity.previousValue)) {
+			this.doUnsubscribes();
+			this.iconStep = 0;
+		}
 	}
 
 	public getPercentare(maxValue: number, startOn: number): number {
@@ -65,9 +90,14 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 		else {
 			return this.percentageTime + "%";
 		}
-	} 
+	}
 
 	ngOnInit(): void {
+		document.querySelectorAll('[pm-dropzone] [pm-dropitem]').forEach((item: any, index) => {
+			item.ondragstart = (e: any) => {
+				e.dataTransfer.setData("item-id", e.target.id)
+			}
+		})
 	}
 
 	public calculateRemainTime(): number {
@@ -118,6 +148,12 @@ export class CurrentActivityComponent implements OnInit, OnChanges, OnDestroy {
 		}
 		if (this.remainTimeUnsubscribe) {
 			this.remainTimeUnsubscribe.unsubscribe()
+		}
+	}
+
+	public startActivity(activity: Activity) {
+		if (!this.currentActivity) {
+			this.startActivityEvent.emit(activity);
 		}
 	}
 

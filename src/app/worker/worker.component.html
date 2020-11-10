@@ -1,4 +1,4 @@
-<app-current-activity [currentActivity]="currentActivity" (activityStopped)="activityStopped()" (activityFinish)="finishActivity()">
+<app-current-activity [currentActivity]="currentActivity" (startActivity)="startActivity($event)" (activityStopped)="activityStopped()" (activityFinish)="finishActivity()">
 </app-current-activity>
 <hr>
 <router-outlet (activate)="onActivate($event)"></router-outlet>
